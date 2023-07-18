@@ -2,15 +2,18 @@ const DB = require('../configs/dbConfig');
 const shopModel = require('./shopModel');
 const userModel = require('./userModel');
 
-const Users = userModel;
-const Shops = shopModel;
+const User = userModel;
+const Shop = shopModel;
+
+//methods
 
 //relationsive
-Shops.belongsTo(Users, { foreignKey: 'ownerId' });
+Shop.belongsTo(User, { foreignKey: 'ownerId' });
+User.hasMany(Shop, { foreignKey: 'ownerId' });
 
-DB.sync({ force: false, alter: true });
+DB.sync({ force: true, alter: true });
 
 module.exports = {
-    Users,
-    Shops,
+    User,
+    Shop,
 };
