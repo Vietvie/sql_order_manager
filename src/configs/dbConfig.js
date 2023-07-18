@@ -6,6 +6,7 @@ const DB = new Sequelize(
     process.env.DB_PASSWORD,
     {
         dialect: 'mysql',
+        logging: process.env.NODE_ENV === 'development' ? true : false,
     }
 );
 
